@@ -1,0 +1,20 @@
+＜データ数1，「章」の変換をやっていたときに出たエラー＞
+Traceback (most recent call last):
+  File "C:\Users\k3o2u\WorkSpace\venv\lib\site-packages\torch\serialization.py", line 619, in save
+    _save(obj, opened_zipfile, pickle_module, pickle_protocol, _disable_byteorder_record)
+  File "C:\Users\k3o2u\WorkSpace\venv\lib\site-packages\torch\serialization.py", line 853, in _save
+    zip_file.write_record(name, storage.data_ptr(), num_bytes)
+RuntimeError: [enforce fail at inline_container.cc:593] . PytorchStreamWriter failed writing file data/21: file write failed
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "C:\Users\k3o2u\WorkSpace\ThemaB\image_converter\UGATIT_train.py", line 318, in <module>
+    torch.save(netG_B2A.to('cpu').state_dict(),f'./trained_model/epoch_{epoch+1}/generator_B2A_trained_model_cpu.pth')
+  File "C:\Users\k3o2u\WorkSpace\venv\lib\site-packages\torch\serialization.py", line 620, in save
+    return
+  File "C:\Users\k3o2u\WorkSpace\venv\lib\site-packages\torch\serialization.py", line 466, in __exit__
+    self.file_like.write_end_of_file()
+RuntimeError: [enforce fail at inline_container.cc:424] . unexpected pos 14374272 vs 14374160
+
+＜＞

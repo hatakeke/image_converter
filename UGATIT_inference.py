@@ -6,7 +6,7 @@ from module.generator import *
 
 #学習済みモデルの読み込み
 generator = Generator()
-generator.load_state_dict(torch.load('./trained_model/generator_A2B_trained_model_cpu.pth'))
+generator.load_state_dict(torch.load('./実験結果/data6763_learningrate0.00001/trained_model/generator_A2B_trained_model_cpu.pth'))
 #推論モードに切り替え
 generator.eval()
 #変換対象となる画像の読み込み

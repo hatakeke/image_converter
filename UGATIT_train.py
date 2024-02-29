@@ -249,7 +249,7 @@ for epoch in range(num_epochs):
 		G_losses_per_epoch.append(Generator_loss.item())
 
 		#学習状況をシェルに出力
-		if iteration % 50 == 0:
+		if iteration % 1 == 0:
 			print('[%d/%d][iteration:%d]\tLoss_D: %.4f\tLoss_G: %.4f'
 					% (epoch,num_epochs,iteration,
 						Discriminator_loss.item(),Generator_loss.item()))
@@ -310,6 +310,13 @@ for epoch in range(num_epochs):
 		fake_B2A_heatmap = F.interpolate(fake_B2A_heatmap,size=(256,256))
 		fake_B2A2B_heatmap = F.interpolate(fake_B2A2B_heatmap,size=(256,256))
 		output_how_much_progress("./output/epoch_{}/heatmap_B.png".format(epoch+1).format(epoch+1),[fake_B2B_heatmap,fake_B2A_heatmap,fake_B2A2B_heatmap])
+
+		output_dir = f"./trained_model/epoch_{epoch+1}"
+		if not os.path.exists(output_dir):
+			os.makedirs(output_dir)
+		torch.save(netG_A2B.to('cpu').state_dict(),f'./trained_model/epoch_{epoch+1}/generator_A2B_trained_model_cpu.pth')
+		torch.save(netG_B2A.to('cpu').state_dict(),f'./trained_model/epoch_{epoch+1}/generator_B2A_trained_model_cpu.pth')
+		
 	#テスト用break
 	#break
 
@@ -326,11 +333,11 @@ with open('./output/time.txt', mode='w') as f:
 
 #学習済みGeneratorのモデル（CPU向け）を出力
 #モデル出力用ディレクトリがなければ作成
-output_dir = "./trained_model"
-if not os.path.exists(output_dir):
-	os.makedirs(output_dir)
-torch.save(netG_A2B.to('cpu').state_dict(),'./trained_model/generator_A2B_trained_model_cpu.pth')
-torch.save(netG_B2A.to('cpu').state_dict(),'./trained_model/generator_B2A_trained_model_cpu.pth')
+# output_dir = "./trained_model"
+# if not os.path.exists(output_dir):
+# 	os.makedirs(output_dir)
+# torch.save(netG_A2B.to('cpu').state_dict(),'./trained_model/generator_A2B_trained_model_cpu.pth')
+# torch.save(netG_B2A.to('cpu').state_dict(),'./trained_model/generator_B2A_trained_model_cpu.pth')
 
 #lossのグラフを出力
 plt.clf()

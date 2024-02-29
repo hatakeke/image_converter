@@ -1,0 +1,5 @@
+total_time: 25877.2245 sec.
+dataset_A size: 3
+dataset_B size: 3
+num_epochs: 40
+batch_size: 1
